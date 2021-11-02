@@ -32,7 +32,7 @@ package linkedlistpractice2;
  * 
  * = length(entries) of the linked list =
  *  
- *  - length/entries¡@:¡@how many nodes in the linked list?
+ *  - length/entries : how many nodes in the linked list?
  *  
  *  - two way to find the length:
  *     
@@ -226,10 +226,9 @@ public class LinkedListWithIterator {
 	 * or null if there us no next node.
 	 * 
 	 * Step 1:
-	 * Let the node next to the previous be the node that next to the current.
 	 * Let the previous.next node point to the node next to the current node.
 	 * Gives the reference of curren.next to the previous.next
-	 * previous.next (new current C 's previous.next) = current.next (next node of old current B)
+	 * previous.next (new current C 's previous.next) = current.next (C -> next node of old current B )
 	 *  
 	 * before :
 	 * previous -> A
@@ -241,17 +240,25 @@ public class LinkedListWithIterator {
 	 * A-> C 
 	 * B(x)-> C-> D
 	 * 
-	 * Step: Let the node next to the current be the new current
-	 * current(new current C) = current.next (old current B)
+	 * Step2:
+	 * Let the node next to the current be the new current
+	 * current(new current C) = current.next (C-> next to the old current B)
 	 * 
 	 * before:
+	 * previous -> A
+	 * current -> B
 	 * 
 	 * A-> C
 	 * B(x)-> C->D
 	 * 
-	 * after:
+	 * after: current = current.next
 	 * 
-	 * A-> C-> D   
+	 * previous -> A
+	 * new current -> C
+	 * old current be deleted -> B(x)
+	 *  
+	 * A-> C-> D
+	 *    
 	 */
 	public void deleteCurrentNode() {
 		if((current != null)&&(previous != null)) {
