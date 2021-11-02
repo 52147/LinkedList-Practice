@@ -52,7 +52,7 @@ public class Driver {
 		
 		System.out.println();
 		System.out.println("List has " + list.length() + " entries.");
-		System.out.println();
+		
 		
 		System.out.println(Arrays.toString(list.placeToArray()));
 		

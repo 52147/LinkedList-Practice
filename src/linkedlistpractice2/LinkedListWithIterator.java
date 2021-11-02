@@ -11,7 +11,7 @@ package linkedlistpractice2;
  *    
  * = current node =
  * 
- *  - Initially, current node is the first node.
+ *  - Initially, current node is the first node.(head)
  *  - current node can be changed to the next node until the iteration has moved beyond the end(null).
  *  
  *  = previous =
@@ -29,10 +29,26 @@ package linkedlistpractice2;
  *   
  *   - To declare a variable of reference type -> use the class name as data type
  *     - ex: Node head -> head contains the reference to the Node object
+ * 
+ * = length(entries) of the linked list =
  *  
+ *  - length/entries¡@:¡@how many nodes in the linked list?
+ *  
+ *  - two way to find the length:
  *     
- *  
- *  
+ *    - First:
+ *     - set a private variable int "length"
+ *     - add first node -> length = 1
+ *     - insert the node -> length++
+ *    
+ *    - Second:
+ *     -length method
+ *      - set the iterator count = 0
+ *      - set the pointer position = head
+ *      - while position is not null
+ *        - count ++
+ *        - advance the pointer to the next node
+ *      - return the count(number of the nodes)  
  *
  */
 
@@ -40,21 +56,34 @@ public class LinkedListWithIterator {
 	private Node head;
 	private Node current;
 	private Node previous;
+	private int length;
 
 	public LinkedListWithIterator() {
 		head = null;
 		current = null;
 		previous = null;
+		length = 0;
 	}
-
+	
+	public int getLength() {
+		return length;
+	}
+	
+	/**
+	 *  Adds the first node(head) and gives the reference into the previous.
+	 */
 	public void addFirstNode(String addElement) {
 		head = new Node(addElement, head);
+		System.out.println("Add the first node '" + addElement +"' at the head node.");
 		if ((current == head.next) && (current != null))
+			System.out.println("Add the first node '" + addElement +"' at the head node.");
 			previous = head;
+			length = 1;
 	}
 
 	/**
 	 * Sets iterator to the first node(head) of the list.
+	 * -> gives the current a reference to head
 	 */
 	public void resetIteration() {
 		current = head;
@@ -72,7 +101,7 @@ public class LinkedListWithIterator {
 	/**
 	 * Advances iterator to next node. -> give the previous and current pointer a new reference to the next node
 	 * 
-	 * Step 1: put the current pointer to the previous pointer.
+	 * Step 1: give the reference of current pointer to the previous pointer.
 	 * previous = current
 	 * 
 	 * before:
@@ -105,6 +134,7 @@ public class LinkedListWithIterator {
 	 */
 	public void goToNext() {
 		if (current != null) {
+			System.out.println("Move the current to the next node.");
 			previous = current;
 			current = current.next;
 		} else if (head != null) {
@@ -141,8 +171,8 @@ public class LinkedListWithIterator {
 			System.out.println("Can not set the element because current is not at any node");
 			System.exit(0);
 		}
-
 	}
+	
 	/**
 	 * Insert a new node containing new element after current node.
 	 * 
@@ -174,8 +204,10 @@ public class LinkedListWithIterator {
 		Node newNode = new Node();
 		newNode.element = newElement;
 		if(current != null) {
+			System.out.println("Insert a node '" + newElement + "' after the current node.");
 			newNode.next = current.next;		
 			current.next = newNode;
+			length++;
 		}
 		else if (head != null) {
 			System.out.println("Iterator is not initialized.");
@@ -186,28 +218,60 @@ public class LinkedListWithIterator {
 			System.exit(0);
 		}
 	}
+	
 	/**
-	 * Deletes the current node.
+	 * Deletes the current node. And move the current node to the next node.
+	 * 
+	 * After this method invocation, the current node is either the node after the deleted node 
+	 * or null if there us no next node.
+	 * 
+	 * Step 1:
+	 * Let the node next to the previous be the node that next to the current.
+	 * Let the previous.next node point to the node next to the current node.
+	 * Gives the reference of curren.next to the previous.next
+	 * previous.next (new current C 's previous.next) = current.next (next node of old current B)
+	 *  
+	 * before :
+	 * previous -> A
+	 * current -> B(x)
+	 * A-> B(x)-> C-> D
+	 * 
+	 * after: previous.next = current.next
+	 * 
+	 * A-> C 
+	 * B(x)-> C-> D
+	 * 
+	 * Step: Let the node next to the current be the new current
+	 * current(new current C) = current.next (old current B)
+	 * 
+	 * before:
+	 * 
+	 * A-> C
+	 * B(x)-> C->D
+	 * 
+	 * after:
+	 * 
+	 * A-> C-> D   
 	 */
 	public void deleteCurrentNode() {
-		if((current != null)&&(previous == null)) {
-			previous.element = current.element;
+		if((current != null)&&(previous != null)) {
+			System.out.println("Delete the current node.");
+			previous.next = current.next;
 			current = current.next;
 		}else if((current != null)&&(previous == null)){
-			head = current.next;
-			current = head;
-			
-			
+			System.out.println("Delete the current node/head node, because the current node is at head node.");
+			head = current.next; // current is at head node, so no previous node
+			current = head;	
 		}else {
-			System.out.println("Deleting with uninitialized currebt or an empty list");
+			System.out.println("Deleting with uninitialized current or an empty list");
 			System.exit(0);
 		}
 	}
 	
 	public int length() {
 		int count = 0;
-		Node position = head ;
-		if (position != null) {
+		Node position = head;
+		while (position != null) {
 			count++;
 			position = position.next;
 		}

@@ -1,8 +1,8 @@
 package linkedlistpractice2;
 
 public class Node {
-	 String element;
-	 Node next;
+	String element;
+	Node next;
 
 	public Node() {
 		element = null;
