@@ -40,18 +40,68 @@ package linkedlistpractice3;
  * - isEmpty is an easily implemented short one-liner.
  * - The methods zeroth and first return iterators corresponding to the header and first element, respectively.
  * 
+ * 
+ * printList()
+ * 
  * - The printList method outputs the contents of a list.
  * - printList uses only public methods and a typical iteration sequence of obtaining a starting point (via first),
  *   testing that it has not gone past the ending point(via isValid),
  *   and advancing in each iteration(via advance).    
  *   
+ * 
+ * - Let us revisit the issue of whether all three classes are necessary. 
+ *   - For instance, couldn't we just have the LinkedList class maintain a notion of a current position?
+ *   - Although this option is feasible and work for many applications,
+ *     using a separate iterator class expresses the abstraction that the
+ *     position and list actually are separate objects.
+ *   - Moreover, it allows for a list to be accessed in several places simultaneously.
+ *     - For instance, to remove a sublist from a list, we can easily add a remove operation to the list class
+ *       that uses 2 iterators to specify the starting and ending points of the sublist to be removed.
+ *       - Without the iterator class, this action would be more difficult to express.
  *   
+ * find()
+ * 
+ * - which returns the position in the list of some element.
+ * - take advantage of the fact that the and(&&) operations is short-circuited:
+ * 
+ *   - if the first half of the and is false, the result is automatically false and the second half is not evaluated.
+ *   
+ *   
+ * remove()
+ * 
+ * - remove some element x from the list.
+ * - We need to decide what to do if x occurs more than once or not at all.
+ * - Our routine removes the first occurrence of x and does nothing if x is not in the list.
+ * - To make that happen, we find p, which is the cell prior to the one containing x, via a call to findPrevious.
+ * 
+ *   - This code is not foolproof:
+ *     - There may be 2 iterators, and one can be left logically in limbo if the other removes a node.
+ *  
+ * findPrevious()
+ * find()
+ * - The findPrevious routine is similar to the find routine.
+ * 
+ * 
+ * insertion()
+ * 
+ * - We pass an element to be inserted and a position p.
+ * - This particular insertion routine inserts an element after position p.
+ * - Note that the insert routine makes no use of the list it is in; it depends only on p.
+ * 
+ * 
+ * time analysis:
+ * 
+ * - With the exception of the find and findPrevious routines(and remove, which calls findPrevious),
+ *   all the operations that we have coded so far take O(1) time.
+ *   - The find and findPrevious routines take O(N) time in the worst case because the entire list might need to be traversed if the element either is not found or is last in the list.
+ *   
+ * - On average, the running time is O(N), because on average half the list must be traversed.
  * 
  *   
  *   
- *   
- *   
- *   
+ * - We certainly could have added more operations, but this basic set is quite powerful.
+ * - Some operations, such as retreat, are not efficiently supported by this version of the linked list;
+ *   variations on the linked list that allow constant time implementation of that and other operators.  
  *
  */
 
@@ -165,31 +215,6 @@ public class LinkedList<AnyType> {
 			p.current.next = p.current.next.next; // Bypass deleted node
 	}
 	
-	// Simple print method
-	public static<AnyType> void printList(LinkedList<AnyType> theList) {
-		if(theList.isEmpty())
-			System.out.println("Empty list");
-		else {
-			LinkedListIterator<AnyType> itr = theList.first();
-			for(;itr.isValid(); itr.advance())
-				System.out.println(itr.retrieve() + " ");
-		}
-		
-		System.out.println();
-			
-	}
-	
-	
-	
-	
-	public static <AnyType> int listSize(LinkedList<AnyType> theList) {
-		LinkedListIterator<AnyType> itr;
-		int size = 0;
-		
-		for(itr = theList.first(); itr.isValid(); itr.advance())
-			size++;
-		
-		return size;
-	}
+
 
 }

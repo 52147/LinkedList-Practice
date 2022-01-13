@@ -155,15 +155,7 @@ package linkedlistpractice3;
  *  - Note that this constructor is package-visible and thus cannot be used by client methods.
  *  - Instead, the general idea is that the LinkedList class returns preconstructed LinkedList objects, as appropriate;
  *    LinkedList is in the same package as LinkedListIterator, so it can invoke the LinkedListIterator constructor.
- *                 
- *                
- *         
- *                 
- *         
- *         
- *         
- *         
- *              
+ *                              
  *              
  *
  */
