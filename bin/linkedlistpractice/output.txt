@@ -1,0 +1,27 @@
+List has 6 entries.
+
+Six
+Five
+Four
+Three
+Two
+One
+
+Three is on the list.
+
+Five
+Four
+Three
+Two
+One
+
+Three is not on the list.
+
+Start: 
+Two
+One
+
+List has 2 entries.
+[Two, One]
+Two
+One

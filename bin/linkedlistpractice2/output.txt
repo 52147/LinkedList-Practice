@@ -1,0 +1,65 @@
+Add the first node 'One' at the head node.
+Insert a node 'Two' after the current node.
+Insert a node 'Three' after the current node.
+Insert a node 'Four' after the current node.
+
+List has 4 entries.
+List has 4 entries.
+
+Current node is at : One
+
+Insert a node 'a number.' after the current node.
+
+List: 
+One
+a number.
+Four
+Three
+Two
+
+Replace the current element by : Five
+
+List: 
+Five
+a number.
+Four
+Three
+Two
+
+Move the current to the next node.
+The current node at : a number.
+
+List: 
+Five
+a number.
+Four
+Three
+Two
+
+List has 5 entries.
+List has 5 entries.
+
+Insert a node 'Six' after the current node.
+
+List: 
+Five
+a number.
+Six
+Four
+Three
+Two
+
+The current node at : a number.
+
+Delete the current node.
+
+List: 
+Five
+Six
+Four
+Three
+Two
+
+The current node at : Six
+
+List has 5 entries.
