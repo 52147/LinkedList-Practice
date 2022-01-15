@@ -1,4 +1,12 @@
 package doublylinkedlist;
+/**
+ * = Node class =
+ * 
+ * - which is similar to the ListNode class.
+ * - The main difference is that, because we use a doubly linked list,
+ *   we have both prev and next links.
+ *   
+ */
 
 /**
  * This is the doubly-linked list node.
