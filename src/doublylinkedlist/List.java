@@ -42,7 +42,7 @@ public interface List<AnyType> extends Collection<AnyType>{
 	 * @throws IndexOutBoundsException if pos is not between 0 and size(), inclusive.               
 	 *         
 	 */
-	ListIterator<AnyType> listIteraor(int pos);	
+	ListIterator<AnyType> listIteraor(int idx);	
 	
 
 }

@@ -191,6 +191,7 @@ public class LinkedList<AnyType> {
 	
 	/**
 	 * Return iterator prior to the first node containing an item.
+	 * find the node before x
 	 * @param x the item to search for
 	 * @return appropriate iterator if the item is found. Otherwise, the iterator corresponding to the last element in the list is returned.
 	 */

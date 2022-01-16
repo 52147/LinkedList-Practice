@@ -54,6 +54,8 @@ public class Driver {
 		
 		System.out.println("Finished deletions");
 		printList(theList);
+		
+		
 
 	}
 
