@@ -39,7 +39,7 @@ public class Driver {
 		for(i = 0 ; i < 10; i++) {
 			theList.insert(i, theItr);
 			printList(theList);
-			theItr.advance();
+			theItr.advance(); // If does not add advance, list will in reverse order.
 		}
 		
 		System.out.println("Size was:" + listSize(theList));

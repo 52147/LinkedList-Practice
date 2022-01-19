@@ -8,12 +8,12 @@ public class Driver {
 
 		LinkdedListDemo list = new LinkdedListDemo();
 
-		list.addNode("One"); // The last node is One.
+		list.addNode("One"); 
 		list.addNode("Two");
 		list.addNode("Three");
 		list.addNode("Four");
 		list.addNode("Five");
-		list.addNode("Six"); // The first node is Six.
+		list.addNode("Six"); 
 
 		System.out.println("List has " + list.length() + " entries.");
 		
